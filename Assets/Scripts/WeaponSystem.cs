@@ -9,13 +9,19 @@ public class WeaponSystem : MonoBehaviour
     [Header("武器生成位置")]
     public Transform pointWeapon;
 
-    private void SpwanWeapon()
+    private void SpawnWeapon()
     {
         Instantiate(prefabWeapon, pointWeapon.position, pointWeapon.rotation);
     }
 
+    public void RestarSpawn()
+    {
+        CancelInvoke();
+        InvokeRepeating("SpawnWeapon", 0, interval);
+    }
+
     private void Awake()
     {
-        InvokeRepeating("SpwanWeapon", 0, interval);
+        InvokeRepeating("SpawnWeapon", 0, interval);
     }
 }

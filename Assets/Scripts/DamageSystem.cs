@@ -19,13 +19,13 @@ public class DamageSystem : MonoBehaviour
     {
         if (collision.gameObject.name.Contains("武器"))
         {
-            GetDamage();
+            GetDamage(collision.gameObject.GetComponent<Weapon>().attack);
         }
     }
 
-    private void GetDamage()
+    private void GetDamage(float attack)
     {
-        hp -= 50;
+        hp -= attack;
 
         if (hp <= 0) Dead();
     }
