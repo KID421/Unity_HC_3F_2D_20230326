@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class LevelManager : MonoBehaviour
     public GameObject goLevelUp;
     [Header("技能選取區塊 1 ~ 3")]
     public GameObject[] goChooseSkills;
+    [Header("全部技能")]
+    public DataSkill[] dataSkills;
+
+    public List<DataSkill> randomSkill = new List<DataSkill>();
 
     [ContextMenu("更新經驗值需求表")]
     private void UpdateExpNeeds()
@@ -39,7 +44,7 @@ public class LevelManager : MonoBehaviour
     public void GetExp(float getExp)
     {
         exp += getExp;
-        print($"<color=yellow>當前經驗值：{ exp }</color>");
+        // print($"<color=yellow>當前經驗值：{ exp }</color>");
 
         // 如果 經驗值 >= 當前等級需求 並且 等級 < 等級上限 就 升級
         if (exp >= expNeeds[lv - 1] && lv < lvMax)
