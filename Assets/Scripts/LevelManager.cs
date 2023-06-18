@@ -16,6 +16,11 @@ public class LevelManager : MonoBehaviour
 
     public float[] expNeeds = { 100, 200, 300 };
 
+    [Header("升級面板")]
+    public GameObject goLevelUp;
+    [Header("技能選取區塊 1 ~ 3")]
+    public GameObject[] goChooseSkills;
+
     [ContextMenu("更新經驗值需求表")]
     private void UpdateExpNeeds()
     {
@@ -42,9 +47,15 @@ public class LevelManager : MonoBehaviour
             exp -= expNeeds[lv - 1];        // 計算多出來的經驗
             lv++;                           // 等級提升 (+1)
             textLv.text = $"Lv {lv}";       // 更新等級介面
+            LevelUp();
         }
 
         textExp.text = $"{exp} / {expNeeds[lv - 1]}";
         imgExp.fillAmount = exp / expNeeds[lv - 1];
+    }
+
+    private void LevelUp()
+    {
+        goLevelUp.SetActive(true);
     }
 }
