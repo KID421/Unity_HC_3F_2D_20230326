@@ -72,6 +72,59 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             goChooseSkills[i].transform.Find("技能名稱").GetComponent<TextMeshProUGUI>().text = randomSkill[i].nameSkill;
+            goChooseSkills[i].transform.Find("技能描述").GetComponent<TextMeshProUGUI>().text = randomSkill[i].description;
+            goChooseSkills[i].transform.Find("技能等級").GetComponent<TextMeshProUGUI>().text = "等級 Lv " +  randomSkill[i].lv;
+
+            goChooseSkills[i].transform.Find("技能圖片").GetComponent<Image>().sprite = randomSkill[i].iconSkill;
         }
+    }
+
+    public void ClickSkillButton(int number)
+    {
+        print("玩家按下的技能是：" + randomSkill[number].nameSkill);
+
+        // 該技能等級 +1
+        randomSkill[number].lv++;
+        // 按下的技能升級
+        if (randomSkill[number].nameSkill == "移動速度") UpdateMoveSpeed(number);
+        if (randomSkill[number].nameSkill == "武器攻擊") UpdateWeaponAttack();
+        if (randomSkill[number].nameSkill == "武器間隔") UpdateWeaponInterval(number);
+        if (randomSkill[number].nameSkill == "玩家血量") UpdatePlayerHealth(number);
+        if (randomSkill[number].nameSkill == "經驗值範圍") UpdateExpRange();
+    }
+
+    [Header("控制系統：犀牛")]
+    public ControlSystem controlSystem;
+    [Header("武器系統：犀牛")]
+    public WeaponSystem weaponSystem;
+    [Header("玩家血量：玩家犀牛")]
+    public DataHealth dataHealth;
+
+    public void UpdateMoveSpeed(int number)
+    {
+        int lv = randomSkill[number].lv;
+        controlSystem.moveSpeed = randomSkill[number].skillValues[lv - 1];
+    }
+
+    public void UpdateWeaponAttack()
+    {
+
+    }
+
+    public void UpdateWeaponInterval(int number)
+    {
+        int lv = randomSkill[number].lv;
+        weaponSystem.interval = randomSkill[number].skillValues[lv - 1];
+    }
+
+    public void UpdatePlayerHealth(int number)
+    {
+        int lv = randomSkill[number].lv;
+        dataHealth.hp = randomSkill[number].skillValues[lv - 1];
+    }
+
+    public void UpdateExpRange()
+    {
+
     }
 }
