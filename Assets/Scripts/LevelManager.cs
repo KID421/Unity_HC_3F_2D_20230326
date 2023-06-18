@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Linq;
 
 public class LevelManager : MonoBehaviour
 {
@@ -62,5 +63,15 @@ public class LevelManager : MonoBehaviour
     private void LevelUp()
     {
         goLevelUp.SetActive(true);
+
+        // 技能必須小於 5
+        randomSkill = dataSkills.Where(x => x.lv < 5).ToList();
+        // 5 個技能隨機排序
+        randomSkill = randomSkill.OrderBy(x => Random.Range(0, 999)).ToList();
+
+        for (int i = 0; i < 3; i++)
+        {
+            goChooseSkills[i].transform.Find("技能名稱").GetComponent<TextMeshProUGUI>().text = randomSkill[i].nameSkill;
+        }
     }
 }
