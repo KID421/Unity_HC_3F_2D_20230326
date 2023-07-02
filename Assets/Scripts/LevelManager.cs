@@ -6,6 +6,7 @@ using System.Linq;
 
 public class LevelManager : MonoBehaviour
 {
+    #region 資料
     [Header("等級與經驗值介面")]
     public TextMeshProUGUI textLv;
     public TextMeshProUGUI textExp;
@@ -26,7 +27,9 @@ public class LevelManager : MonoBehaviour
     public DataSkill[] dataSkills;
 
     public List<DataSkill> randomSkill = new List<DataSkill>();
+    #endregion
 
+    #region 經驗值系統
     [ContextMenu("更新經驗值需求表")]
     private void UpdateExpNeeds()
     {
@@ -62,6 +65,9 @@ public class LevelManager : MonoBehaviour
 
     private void LevelUp()
     {
+        // 時間暫停
+        Time.timeScale = 0;
+        // 顯示升級面板
         goLevelUp.SetActive(true);
 
         // 技能必須小於 5
@@ -73,7 +79,7 @@ public class LevelManager : MonoBehaviour
         {
             goChooseSkills[i].transform.Find("技能名稱").GetComponent<TextMeshProUGUI>().text = randomSkill[i].nameSkill;
             goChooseSkills[i].transform.Find("技能描述").GetComponent<TextMeshProUGUI>().text = randomSkill[i].description;
-            goChooseSkills[i].transform.Find("技能等級").GetComponent<TextMeshProUGUI>().text = "等級 Lv " +  randomSkill[i].lv;
+            goChooseSkills[i].transform.Find("技能等級").GetComponent<TextMeshProUGUI>().text = "等級 Lv " + randomSkill[i].lv;
 
             goChooseSkills[i].transform.Find("技能圖片").GetComponent<Image>().sprite = randomSkill[i].iconSkill;
         }
@@ -87,12 +93,17 @@ public class LevelManager : MonoBehaviour
         randomSkill[number].lv++;
         // 按下的技能升級
         if (randomSkill[number].nameSkill == "移動速度") UpdateMoveSpeed(number);
-        if (randomSkill[number].nameSkill == "武器攻擊") UpdateWeaponAttack();
+        if (randomSkill[number].nameSkill == "武器攻擊") UpdateWeaponAttack(number);
         if (randomSkill[number].nameSkill == "武器間隔") UpdateWeaponInterval(number);
         if (randomSkill[number].nameSkill == "玩家血量") UpdatePlayerHealth(number);
         if (randomSkill[number].nameSkill == "經驗值範圍") UpdateExpRange(number);
-    }
 
+        Time.timeScale = 1;
+        goLevelUp.SetActive(false);
+    } 
+    #endregion
+
+    #region 升級系統
     [Header("控制系統：犀牛")]
     public ControlSystem controlSystem;
     [Header("武器系統：犀牛")]
@@ -101,6 +112,8 @@ public class LevelManager : MonoBehaviour
     public DataHealth dataHealth;
     [Header("經驗物件：香蕉經驗值")]
     public CircleCollider2D expBanana;
+    [Header("武器：蜜蜂")]
+    public Weapon weaponBee;
 
     public void UpdateMoveSpeed(int number)
     {
@@ -108,9 +121,10 @@ public class LevelManager : MonoBehaviour
         controlSystem.moveSpeed = randomSkill[number].skillValues[lv - 1];
     }
 
-    public void UpdateWeaponAttack()
+    public void UpdateWeaponAttack(int number)
     {
-
+        int lv = randomSkill[number].lv;
+        weaponBee.attack = randomSkill[number].skillValues[lv - 1];
     }
 
     public void UpdateWeaponInterval(int number)
@@ -129,5 +143,6 @@ public class LevelManager : MonoBehaviour
     {
         int lv = randomSkill[number].lv;
         expBanana.radius = randomSkill[number].skillValues[lv - 1];
-    }
+    } 
+    #endregion
 }

@@ -19,13 +19,15 @@ public class DamageSystem : MonoBehaviour
     {
         if (collision.gameObject.name.Contains("武器"))
         {
-            GetDamage();
+            float attack = collision.gameObject.GetComponent<Weapon>().attack;
+            GetDamage(attack);
         }
     }
 
-    private void GetDamage()
+    private void GetDamage(float damage)
     {
-        hp -= 50;
+        print($"<color=#ff6699>受到的傷害 {damage}</color>");
+        hp -= damage;
 
         if (hp <= 0) Dead();
     }
