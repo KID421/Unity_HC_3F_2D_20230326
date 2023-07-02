@@ -24,7 +24,7 @@ public class TeleportSystem : MonoBehaviour
             inDoor = true;
             player.transform.position = otherDoor.transform.position;
 
-            Invoke("DelayReset", 1);
+            Invoke("DelayReset", 0.5f);
         }
     }
 
