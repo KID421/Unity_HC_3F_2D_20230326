@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Laser
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,8 +17,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - "\u73A9\u5BB6"
+  - "\u6B66\u5668"
   - 
   - 
   - 

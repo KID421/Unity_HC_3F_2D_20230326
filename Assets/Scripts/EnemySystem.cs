@@ -9,8 +9,10 @@ public class EnemySystem : MonoBehaviour
 {
     [Header("追蹤速度"), Range(0, 100)]
     public float moveSpeed = 3.5f;
+    [Header("敵人資料")]
+    public DataHealthEnemy data;
 
-    public Transform player;
+    private Transform player;
 
     private void Awake()
     {
