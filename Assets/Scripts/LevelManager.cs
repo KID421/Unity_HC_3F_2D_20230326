@@ -90,7 +90,7 @@ public class LevelManager : MonoBehaviour
         if (randomSkill[number].nameSkill == "武器攻擊") UpdateWeaponAttack();
         if (randomSkill[number].nameSkill == "武器間隔") UpdateWeaponInterval(number);
         if (randomSkill[number].nameSkill == "玩家血量") UpdatePlayerHealth(number);
-        if (randomSkill[number].nameSkill == "經驗值範圍") UpdateExpRange();
+        if (randomSkill[number].nameSkill == "經驗值範圍") UpdateExpRange(number);
     }
 
     [Header("控制系統：犀牛")]
@@ -99,6 +99,8 @@ public class LevelManager : MonoBehaviour
     public WeaponSystem weaponSystem;
     [Header("玩家血量：玩家犀牛")]
     public DataHealth dataHealth;
+    [Header("經驗物件：香蕉經驗值")]
+    public CircleCollider2D expBanana;
 
     public void UpdateMoveSpeed(int number)
     {
@@ -123,8 +125,9 @@ public class LevelManager : MonoBehaviour
         dataHealth.hp = randomSkill[number].skillValues[lv - 1];
     }
 
-    public void UpdateExpRange()
+    public void UpdateExpRange(int number)
     {
-
+        int lv = randomSkill[number].lv;
+        expBanana.radius = randomSkill[number].skillValues[lv - 1];
     }
 }
