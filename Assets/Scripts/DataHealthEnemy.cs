@@ -1,10 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [CreateAssetMenu(menuName = "KID/Data Health Enemy")]
 public class DataHealthEnemy : DataHealth
 {
-    [Header("±¼¸¨¸gÅç­Èª«¥ó")]
+    [Header("æ‰è½ç¶“é©—å€¼ç‰©ä»¶")]
     public GameObject prefabExp;
-    [Header("±¼¸¨¸gÅç­È¾÷²v"), Range(0, 1)]
+    [Header("æ‰è½ç¶“é©—å€¼æ©Ÿç‡"), Range(0, 1)]
     public float dropProbability;
 }

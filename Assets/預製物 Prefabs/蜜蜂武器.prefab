@@ -139,4 +139,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rig: {fileID: 2303752125298596453}
   power: {x: -200, y: 700}
-  attack: 123
+  attack: 2793

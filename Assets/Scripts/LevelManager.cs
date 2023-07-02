@@ -115,6 +115,15 @@ public class LevelManager : MonoBehaviour
     [Header("武器：蜜蜂")]
     public Weapon weaponBee;
 
+    private void Awake()
+    {
+        controlSystem.moveSpeed = dataSkills[3].skillValues[0];     // 移動速度在 DataSkills 的編號
+        weaponBee.attack = dataSkills[0].skillValues[0];
+        weaponSystem.interval = dataSkills[1].skillValues[0];
+        dataHealth.hp = dataSkills[2].skillValues[0];
+        expBanana.radius = dataSkills[4].skillValues[0];
+    }
+
     public void UpdateMoveSpeed(int number)
     {
         int lv = randomSkill[number].lv;
