@@ -83,6 +83,9 @@ public class LevelManager : MonoBehaviour
 
             goChooseSkills[i].transform.Find("技能圖片").GetComponent<Image>().sprite = randomSkill[i].iconSkill;
         }
+
+        AudioClip sound = SoundManager.instance.btnLevelUp;
+        SoundManager.instance.PlaySound(sound, 0.7f, 1.3f);
     }
 
     public void ClickSkillButton(int number)
@@ -100,6 +103,9 @@ public class LevelManager : MonoBehaviour
 
         Time.timeScale = 1;
         goLevelUp.SetActive(false);
+
+        AudioClip sound = SoundManager.instance.btnUpdateSkill;
+        SoundManager.instance.PlaySound(sound, 0.7f, 1.3f);
     } 
     #endregion
 
