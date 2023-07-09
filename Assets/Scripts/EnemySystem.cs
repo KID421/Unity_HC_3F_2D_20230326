@@ -14,6 +14,7 @@ public class EnemySystem : MonoBehaviour
     public DataHealthEnemy data;
 
     private Transform player;
+    private DamagePlayer damagePlayer;
     private float timer;
 
     private void OnDrawGizmos()
@@ -25,6 +26,7 @@ public class EnemySystem : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("犀牛").transform;
+        damagePlayer = player.GetComponent<DamagePlayer>();
     }
 
     private void Update()
@@ -48,6 +50,7 @@ public class EnemySystem : MonoBehaviour
         if (timer > data.attackInterval)
         {
             print("<color=#9966ff>攻擊玩家！</color>");
+            damagePlayer.GetDamage(data.attack);
             timer = 0;
         }
     }

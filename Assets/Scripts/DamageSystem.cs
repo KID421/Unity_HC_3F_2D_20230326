@@ -8,14 +8,16 @@ public class DamageSystem : MonoBehaviour
     [Header("畫布傷害值")]
     public GameObject prefabDamage;
 
-    private float hp;
+    protected float hp;
+    protected float hpMax;
 
     private void Awake()
     {
         hp = data.hp;
+        hpMax = hp;
     }
 
-    public void GetDamage(float damage)
+    public virtual void GetDamage(float damage)
     {
         // print($"<color=#ff6699>受到的傷害 {damage}</color>");
         hp -= damage;
