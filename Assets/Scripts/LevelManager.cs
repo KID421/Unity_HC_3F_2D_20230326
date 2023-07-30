@@ -120,6 +120,8 @@ public class LevelManager : MonoBehaviour
     public CircleCollider2D expBanana;
     [Header("武器：蜜蜂")]
     public Weapon weaponBee;
+    [Header("玩家血量系統：犀牛")]
+    public DamagePlayer damagePlayer;
 
     private void Awake()
     {
@@ -146,12 +148,14 @@ public class LevelManager : MonoBehaviour
     {
         int lv = randomSkill[number].lv;
         weaponSystem.interval = randomSkill[number].skillValues[lv - 1];
+        weaponSystem.ReSpawWeapon();
     }
 
     public void UpdatePlayerHealth(int number)
     {
         int lv = randomSkill[number].lv;
         dataHealth.hp = randomSkill[number].skillValues[lv - 1];
+        damagePlayer.UpdateHealth(dataHealth.hp);
     }
 
     public void UpdateExpRange(int number)

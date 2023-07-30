@@ -31,4 +31,12 @@ public class DamagePlayer : DamageSystem
         AudioClip sound = SoundManager.instance.playerDead;
         SoundManager.instance.PlaySound(sound, 0.7f, 1.3f);
     }
+
+    public void UpdateHealth(float updateHp)
+    {
+        data.hp = updateHp;
+        hp = updateHp;
+        hpMax = updateHp;
+        imgHp.fillAmount = 1;
+    }
 }

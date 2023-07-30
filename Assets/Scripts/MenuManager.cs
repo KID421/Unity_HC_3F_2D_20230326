@@ -7,6 +7,7 @@ public class MenuManager : MonoBehaviour
     // 腳本程式內容
     public void StartGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("遊戲場景");
     }
 

@@ -22,4 +22,10 @@ public class WeaponSystem : MonoBehaviour
     {
         InvokeRepeating("SpwanWeapon", 0, interval);
     }
+
+    public void ReSpawWeapon()
+    {
+        CancelInvoke("SpwanWeapon");                        // 取消重複呼叫方法
+        InvokeRepeating("SpwanWeapon", 0, interval);
+    }
 }
